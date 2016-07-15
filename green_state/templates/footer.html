@@ -1,0 +1,28 @@
+{% block footer %}
+<style>
+a.fo:link, a.footer:visited {
+    color: red !important;
+    font: bold 12px/18px Tahoma,Arial,Helvetica,sans-serif;
+    padding: 0 8px;
+    text-decoration: none;
+}
+
+</style>
+
+<div class="footer_wrap">
+  <div class="footer_area">
+    <div class="footer_nav_area">
+      <p class="footer_nav_text">
+        <a href="/green/accounts/login/" {% if req == nil %} class = "fo" {% else %} class="footer" {% endif %}>Home</a> |
+         <a href="/green/about_us/" {% if req == '/green/about_us/' %} class = "fo" {% else %} class="footer" {% endif %}>About Us</a> |
+          <a href="/service/service/" {% if req == '/service/service/' %} class = "fo" {% else %} class="footer" {% endif %}>Services</a> |
+           <a href="/green/solutions" {% if req == '/green/solutions/' %} class = "fo" {% else %} class="footer" {% endif %}>Solutions</a> |
+            <a href="/green/support" {% if req == '/green/support/' %} class = "fo" {% else %} class="footer" {% endif %}>Support</a> |
+            <a href="/green/contact_us" {% if req == '/green/contact_us/' %} class = "fo" {% else %} class="footer" {% endif %}>Contact Us</a></p>
+    </div>
+    <div class="copy_wrap">Copyright &copy; : All rights reserved | Design by <a target="_blank" href="http://www.flexsin.com/">Flexsin</a></div>
+    <br class="blank" />
+  </div>
+</div>
+
+{% endblock %}

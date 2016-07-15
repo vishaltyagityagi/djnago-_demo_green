@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+{% load staticfiles %}
+
+<style type="text/css">
+  label.error {
+    color:red;
+  }
+  .vk {
+    background: rgba(0, 0, 0, 0) url("../../static/images/menu_bg.gif") repeat-x scroll center center;
+    color: #313131 !importaint;
+  }
+</style>
+
+<div id="main_container">
+
+    <div class="header">
+    <div class="logo"><a href="#"><img src="images/logo.gif" alt="" title="" border="0" /></a></div>
+
+    <div class="right_header mar">Welcome Form</a> <a href="/logout" class="">Logout</a></div>
+    <div id="clock_a"></div>
+    </div>
+
+    <div class="main_content">
+                    <div class="menu">
+                    <ul>
+                    <li><a class="" href="/usermanagement">User Management</a></li>
+                    <li class="vk"><a href="/home">Product Management</a>
+                    </li>
+                    <li><a href="/servicemanagement">Service Management</a>
+                        <ul>
+                            <ul>
+                                <ul>
+                                </ul>
+
+                            </ul>
+                        </ul>
+
+                    </li>
+                    <li><a href="/contentmanagement">Content Management</a>
+                        <ul>
+                            <ul>
+                            <ul>
+                            </ul>
+                            </ul>
+                        </ul>
+                    </li>
+                    <li><a href="/emailmanagement">Email</a>
+                        <ul>
+                            <ul>
+                                <ul>
+                                </ul>
+                            </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <li><a href="">Templates</a></li>
+                    <li><a href="">Custom details</a></li>
+                    </ul>
+                    </div>
+
+
+    <div class="center_content">
+    {% block left_panel %}
+    {% include "left.html" %}
+    {% endblock%}
+
+
+    <div class="right_content">
+
+</table>
+     <!-- <a href="/new_product" class="bt_green showform"><span class="bt_green_lft"></span><strong>Add new item</strong><span class="bt_green_r"></span></a> -->
+     <a href="#" class="bt_blue"></a>
+     <!-- <a href="/home" class="bt_red deleteButton"><span class="bt_red_lft"></span><strong>Show all Products</strong><span class="bt_red_r"></span></a> -->
+         <div class="form formcheck" >
+
+<form enctype="multipart/form-data" action="" method="post" id ="validation" >
+
+<div>
+<h2>Add Product</h2>
+<table>
+<tr>
+
+<td>{% csrf_token %}</td>
+<td>{{form.id}}</td>
+</tr>
+<tr>
+<td><label for="Title">Product Title:</label></td>
+<td>{{form.title}}</td>
+</tr>
+<tr>
+<td><label for="Description">Description:</label></td>
+<td>{{form.body}}</td>
+</tr>
+<tr>
+<td><label for="Image">Image:</label></td>
+<td>{{form.image}}</td>
+
+</tr>
+<!-- <input type="file" name="img"> -->
+{% if form.errors %}
+            <p style="color: red;">
+                Please correct the error{{ form.errors|pluralize }} below.
+            </p>
+        {% endif %}
+<tr>
+<td><input class="button" type="submit" value="save" /></td>
+</tr>
+</tr>
+</table>
+</form>
+
+
+    </div>
+    <br>
+         </div>
+     </div>
+  </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.showformm').click(function(){
+        if($(this).hasClass("check"))
+            {
+             $(this).removeClass("check");
+             $('.formcheck').hide();
+            }else{
+                $('.formcheck').show();
+             $(this).addClass("check");
+
+            }
+
+    });
+      $('.deleteButton').click(function(){
+              $('.checkdelete').each(function(){
+                   if($(this).is(':checked')){
+                     console.log("check");
+                   }
+
+              });
+
+           });
+      $('.allcheck').click(function(){
+        if($('.allcheck').is(':checked')){
+         $('.checkdelete').attr('checked',true );
+      }
+      else
+       $('.checkdelete').attr('checked',false );
+      });
+
+      $('.checkdelete').change(function(){
+    if($('.checkdelete:checked').length == $('.checkdelete').length){
+          $('.allcheck').attr('checked',true);
+    }else{
+      $('.allcheck').attr('checked',false);
+    }
+});
+
+    });
+</script>
+
+
+<script>
+    $(document).ready(function(){
+        $( "#validation" ).validate({
+            rules: {
+                "title": {
+                    required: true,
+                },
+                "body": {
+                    required: true,
+                },
+                "image":{
+                   required: true,
+                   accept: "image/jpg,image/jpeg,image/png,image/gif"
+               }
+            },
+            messages: {
+                "title": {
+                    required: "Please enter Product title.",
+                },
+                "body": {
+                    required: "Please enter Description.",
+                },
+                "image":{
+                     required: "Please upload  Image",
+                     accept:"Upload Image with valid extension"
+                }
+            }
+        });
+    });
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,155 @@
+
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<style type="text/css">
+  label.error {
+    color:red;
+  }
+  .vk {
+    background: rgba(0, 0, 0, 0) url("../../static/images/menu_bg.gif") repeat-x scroll center center;
+    color: #313131 !importaint;
+  }
+</style>
+
+<div id="main_container">
+
+    <div class="header">
+    <div class="logo"><a href="#"><img src="images/logo.gif" alt="" title="" border="0" /></a></div>
+
+    <div class="right_header mar">Welcome Form</a> <a href="/logout" class="">Logout</a></div>
+    <div id="clock_a"></div>
+    </div>
+
+    <div class="main_content">
+                    <div class="menu">
+                    <ul>
+                    <li><a  href="/usermanagement">User Management</a></li>
+                    <li><a href="/home">Product Management</a>
+                    </li>
+                    <li ><a href="/servicemanagement">Service Management</a>
+                        <ul>
+                            <ul>
+                                <ul>
+                                </ul>
+
+                            </ul>
+                        </ul>
+
+                    </li>
+                    <li><a  href="/contentmanagement">Service Management</a>
+                        <ul>
+                            <ul>
+                            <ul>
+                            </ul>
+                            </ul>
+                        </ul>
+                    </li>
+                    <li><a class ="vk" href="/emailmanagement">Email</a>
+                        <ul>
+                            <ul>
+                                <ul>
+                                </ul>
+                            </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <li><a href="">Templates</a></li>
+                    </ul>
+                    </div>
+
+
+    <div class="center_content">
+    {% block left_panel %}
+    {% include "leftemail.html" %}
+    {% endblock%}
+
+
+    <div class="right_content">
+
+</table>
+     <!-- <a href="/new_product" class="bt_green showform"><span class="bt_green_lft"></span><strong>Add new item</strong><span class="bt_green_r"></span></a> -->
+     <a href="#" class="bt_blue"></a>
+     <h2>Emails Details</h2>
+     <!-- <a href="/home" class="bt_red deleteButton"><span class="bt_red_lft"></span><strong>Show all Products</strong><span class="bt_red_r"></span></a> -->
+         <div class="form formcheck" >
+           <table>
+           <tr><td><h2>Id:</h2></td><td>{{post.id}}</td></tr>
+           <tr><td><h2>From:</td><td>{{post.email_from}}</td></tr>
+           <tr><td><h2>To:</h2></td><td>{{post.to}}</td></tr>
+           <tr><td><h2>Subject:</h2></td><td>{{post.subject}}</td></tr>
+           <tr><td><h2>Message:</h2></td><td>{{post.message}}</td></tr>
+           <tr><td><h2>Post Date:</h2></td><td>{{post.post_date}}</td></tr>
+             <!-- <a href="{{STATIC_URL}}media/{{post.image}}" Download target="_blank">
+               <img border="0" src="{{STATIC_URL}}media/{{post.image}}" alt="Download" width="60" height="60">
+             </a> -->
+           </td>
+           </tr>
+           </table>
+            <h1><td><a href="/{{post.id}}/editemail/">Edit</a></td></h1>
+
+
+
+
+    </div>
+    <br>
+         </div>
+     </div>
+  </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.showformm').click(function(){
+        if($(this).hasClass("check"))
+            {
+             $(this).removeClass("check");
+             $('.formcheck').hide();
+            }else{
+                $('.formcheck').show();
+             $(this).addClass("check");
+
+            }
+
+    });
+      $('.deleteButton').click(function(){
+              $('.checkdelete').each(function(){
+                   if($(this).is(':checked')){
+                     console.log("check");
+                   }
+
+              });
+
+           });
+      $('.allcheck').click(function(){
+        if($('.allcheck').is(':checked')){
+         $('.checkdelete').attr('checked',true );
+      }
+      else
+       $('.checkdelete').attr('checked',false );
+      });
+
+      $('.checkdelete').change(function(){
+    if($('.checkdelete:checked').length == $('.checkdelete').length){
+          $('.allcheck').attr('checked',true);
+    }else{
+      $('.allcheck').attr('checked',false);
+    }
+});
+
+    });
+</script>
+
+
+
+
+
+
+{% endblock %}

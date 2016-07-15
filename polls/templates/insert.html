@@ -1,0 +1,15 @@
+jksfgewajgfd
+<form method="post">
+    {% csrf_token %}
+    <label>Name: </label>
+    <input name="name" value="{{post.name}}">
+    <br>
+    <label>Phone: </label>
+    <input name="phone" value="{{post.phone}}">
+    <br>
+    <label>Age: </label>
+    <input name="age" value="{{post.age}}">
+    <br>
+    <input type="hidden" name="id" value="{{post.id}}">
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+{% load staticfiles %}
+
+
+<div id="main_container">
+    <div class="header_login">
+        <div class="left_footer_login">LOGIN PAGE</div>
+        <div class="left_footer_login"><a href="/admin">ADMIN</a></div>
+    </div>
+    <div class="login_form">
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+{% if form.errors %}
+    <p class="bodyyy">Please enter correct username and Password.</p>
+{% endif %}
+        <form action="" method="post" class="niceform">{% csrf_token %}
+            <fieldset>
+                <dl>
+                    <dt><label for="id_username">Username:</label></dt>
+                    <dd><td>{{ form.username }}</td></dd>
+                </dl>
+                <dl>
+                    <dt><label for="id_password">Password:</label></dt>
+                    <dd><td>{{ form.password }}</td></dd>
+                </dl>
+
+                <dl>
+                    <dt><label></label></dt>
+                    <dd>
+                    </dd>
+                </dl>
+
+                <dl class="submit">
+                    <input type="submit" value="Login" />
+                    <input type="hidden" name="next" value="/home" />
+                </dl>
+            </fieldset>
+        </form>
+    </div>  
+
+
+    <div class="footer_login">
+        <div class="left_footer_login">User Login Panel | Powered by <a href="http://www.flexsin.com/">FLEXSIN</a><br></div>
+        <div class="right_footer_login"><a href="http://www.flexsin.com/"><img src="static/images/indeziner_logo.jpg" alt="" title="" border="0" /></a></div>
+    </div>
+    
+    <div class="left_footer_login"><a href="/register">Register</a><br></div>
+
+</div>      
+
+
+{% endblock %}

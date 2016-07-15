@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %}{% endblock %} {% block head %}{% endblock %} {% block content %} {% load staticfiles %}
+  <html>
+
+    <head>
+      <title>Green Real State</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    </head>
+
+    <body>
+      {% block header %} {% include "header.html" %} {% endblock%}
+      {% block main %} {% include "support.html" %} {% endblock %}
+      {% block footer %} {% include "footer.html" %} {% endblock%}
+    </body>
+
+  </html>
+{% endblock %}

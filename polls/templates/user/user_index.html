@@ -1,0 +1,225 @@
+{% extends "base.html" %} {% block title %}{% endblock %} {% block head %}{% endblock %} {% block content %} {% load staticfiles %}
+<style type="text/css">
+  .im > img {
+    width: 20px;
+    height: 40px;
+  }
+  .vk  {
+    background: rgba(0, 0, 0, 0) url("../../static/images/menu_bg.gif") repeat-x scroll center center;
+    color: #313131 !importaint;
+}
+</style>
+<script src="/static/js/ajaxusersearch.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
+<div id="main_container">
+
+  <div class="header">
+    <div class="logo">
+      <a href="#"><img src="images/logo.gif" alt="" title="" border="0" /></a>
+    </div>
+
+    <div class="right_header mar">Welcome Form</a> <a href="/logout" class="">Logout</a></div>
+    <div id="clock_a"></div>
+  </div>
+
+  <div class="main_content">
+    <div class="menu">
+      <ul>
+        <li><a class="vk" href="">User Management </a></li>
+        <li><a href="/home">Product Management</a>
+        </li>
+        <li><a href="/servicemanagement ">Service Management</a>
+          <ul>
+            <ul>
+              <ul>
+              </ul>
+
+            </ul>
+          </ul>
+
+        </li>
+        <li><a href="/contentmanagement">Content Management</a>
+          <ul>
+            <ul>
+              <ul>
+              </ul>
+            </ul>
+          </ul>
+        </li>
+        <li><a href="/emailmanagement">Email</a>
+          <ul>
+            <ul>
+              <ul>
+              </ul>
+            </ul>
+        </li>
+        </ul>
+        </li>
+        <li><a href="">Templates</a></li>
+      </ul>
+    </div>
+
+
+    <div class="center_content">
+      {% block left_panel %} {% include "leftuser.html" %} {% endblock%}
+
+
+      <div class="right_content">
+        <h2>Users List</h2>
+        <div class="">
+          <form method="get" action="" class="" id="">
+            {% csrf_token %}
+
+            <input type="text" name="q" id="id_q" value="{{ query }}" />
+            <!-- <input type="submit" value="Search" id="key" /> -->
+          </form>
+        </div>
+
+          <form method="get" action="/userdelete/" class="">
+            <!-- {% csrf_token %} -->
+
+            <table id="rounded-corner" class="django-admin-cstm" summary="2007 Major IT Companies' Profit">
+              <tr>
+                <th>
+                  <input class="allcheck" type="checkbox" name="" />
+                </th>
+                <th>Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Created Date</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Action</th>
+
+
+              </tr>
+              {% if results %} {% csrf_token %}
+              {% for result in results %}
+              <tr id="aj">
+                <td>
+                  <input class="checkdelete" name="chk_id[]" type="checkbox" name="" value="{{post.id}}" />
+                </td>
+                <td>{{result.id}}</td>
+                <td>{{result.firstname}}</td>
+                <td>{{result.lastname}}</td>
+                <td>{{result.post_date}}</td>
+                <td>{{result.email}}</td>
+                <td>{{result.is_active}}</td>
+                <td class="im">
+                  <a href="/static/media/{{result.image}}" Download target="_blank">
+                    <img border="0" src="/static/media/{{result.image}}" alt="Download" width="60" height="60">
+                  </a>
+                </td>
+
+              </tr>
+              <a style="margin-left: 500px" href="/home">Back</a> {% endfor %}
+            </table>
+            <a href="" class="bt_green showform"><span class="bt_green_lft"></span><strong>Add new User</strong><span class="bt_green_r"></span></a>
+            <a href="#" class="bt_blue"></a>
+
+            {% else %} {% for post in posts %}
+            <tr>
+              <td>
+                <input class="checkdelete" name="chk_id[]" type="checkbox" name="" value="{{post.id}}" />
+              </td>
+              <td><a href ="/{{post.id}}/showuser/">{{post.id}}</a></td>
+              <td>{{post.firstname}}</td>
+              <td>{{post.lastname}}</td>
+              <td>{{post.post_date}}</td>
+              <td>{{post.email}}</td>
+              {% if post.is_active %}
+                  <td>Active</td>
+                  {% else %}
+                  <td>De-Active</td>
+
+                  {% endif %}
+
+              <td class="im">
+                <a href="{{STATIC_URL}}media/{{post.image}}" Download target="_blank">
+                  <img border="0" src="{{STATIC_URL}}media/{{post.image}}" alt="Download" width="60" height="60">
+                </a>
+              </td>
+              <td><a href="/{{post.id}}/edituser/">Edit</a></td>
+
+
+            </tr>
+            {% endfor %}
+
+
+
+            </table>
+            <!-- <a href="/new_user" class="bt_green showform"><span class="bt_green_lft"></span><strong>Add new User</strong><span class="bt_green_r"></span></a> -->
+            <a href="#" class="bt_blue"></a>
+            <input type="submit" value="Delete items" class="bt_red deleteButton" />
+          </form>
+
+        <div class="form formcheck">
+
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+</div>
+{% include "pagination.html" with page=page_obj %}
+{% endif %}
+
+
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    // alert("hello");
+    //plese change showformm to showform if u want to use jquery
+    $('.showformm').click(function() {
+      if ($(this).hasClass("check")) {
+        $(this).removeClass("check");
+        $('.formcheck').hide();
+      } else {
+        $('.formcheck').show();
+        $(this).addClass("check");
+
+      }
+
+    });
+    $('.deleteButton').click(function() {
+      $('.checkdelete').each(function() {
+        if ($(this).is(':checked')) {
+          console.log("check");
+        }
+
+      });
+
+    });
+    $('.allcheck').click(function() {
+      if ($('.allcheck').is(':checked')) {
+        $('.checkdelete').prop('checked', true);
+      } else
+        $('.checkdelete').prop('checked', false);
+    });
+
+    $('.checkdelete').change(function() {
+      if ($('.checkdelete:checked').length == $('.checkdelete').length) {
+        $('.allcheck').prop('checked', true);
+      } else {
+        $('.allcheck').prop('checked', false);
+      }
+    });
+    $("#id_q").keydown(function() {
+      $("#id_q").css("background-color", "yellow");
+    });
+    $("#id_q").keyup(function() {
+      $("#id_q").css("background-color", "pink");
+    });
+
+  });
+</script>
+
+
+{% endblock %}

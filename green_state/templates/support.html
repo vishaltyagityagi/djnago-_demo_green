@@ -1,0 +1,104 @@
+{%  block main %}
+<style type="text/css">
+  label.error {
+    color:red;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $( "#validation_user" ).validate({
+            rules: {
+                "name": {
+                    required: true,
+                },
+                "description": {
+                    required: true,
+                          minlength: 100
+                    // minlength:60
+                }
+
+            },
+            messages: {
+                "name": {
+                    required: "Please enter Name.",
+                },
+                "description": {
+                    required: "Please enter Description.",
+                }
+            }
+        });
+    });
+</script>
+<div class="main_area">
+
+  <div class="body_wrap">
+    <div class="left_body_wrap">
+      <div class="left_body_main">
+        <div class="main_wrap">
+          <p><span class="welcome_text"></span><span class="web_text"> </span><br />
+            <br />
+            <form enctype="multipart/form-data" action="" method="post" id="validation_user">
+
+              <div>
+                <h2>Support team will help you shortly...</h2>
+                <table>
+                  <tr>
+
+                    <td>{% csrf_token %}</td>
+                    <td>{{form.id}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="name">Name:</label>
+                    </td>
+                    <td>{{form.name}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="description">Description:</label>
+                    </td>
+                    <td>{{form.description}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input class="read_botn" type="submit" value="Submit" />
+                    </td>
+                  </tr>
+                </table>
+            </form>
+            <br class="blank" />
+          </div>
+
+            </div>
+            <br class="blank" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right_body_wrap">
+
+      <div class="event_wrap">
+        <div class="event_top_wrap">
+          <p class="latest_text">latest news</p>
+        </div>
+        <div class="event_meddile_wrap">
+          <div class="feb_wrap">
+            <p class="green_right">FEB 28,2016<br />
+              <br />
+              <span class="busniess_area_text1">Lorem ipsum dolor sit amet, consectetueradipiscing elit. Donec molestie. Sed aliquams.</span></p>
+            <p style="padding:6px 0 12px 35px;"><a href="#" class="read_more2">more</a></p>
+            <p class="green_right">FEB 28,2016<br />
+              <br />
+              <span class="busniess_area_text1">Lorem ipsum dolor sit amet, consectetueradipiscing elit. Donec molestie. Sed aliquams.</span></p>
+            <p style="padding:6px 0 0 35px;"><a href="#" class="read_more2">more</a></p>
+          </div>
+        </div>
+        <div><img src="/static/images/event_bottom.jpg" alt="" /></div>
+      </div>
+    </div>
+    <br class="blank" />
+  </div>
+</div>
+
+{% endblock %}

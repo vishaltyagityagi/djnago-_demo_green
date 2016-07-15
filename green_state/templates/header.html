@@ -1,0 +1,43 @@
+{% block footer %}
+
+<div class="header_area">
+  <div class="main_area">
+    {% if user.username != '' %}
+    <p class="collus_text">Welcome <span  style="color: #576370;">({{ user.username }})</span> &nbsp;&nbsp;</p>
+    {% else %}
+      <p class="collus_text"><a href="/green/register">Sign Up</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/green/accounts/login/">Sign in</a></p>
+    {% endif %}
+
+  </div>
+  <div class="main_area">
+    <div class="logo_wrap">
+      <p class="logo_pad"><a href="#"><img src="/static/images/logo.jpg" alt="" border="0" /></a></p>
+    </div>
+
+    <div class="navarea_wrap">
+      <div class="nav_wrap">
+        <ul>
+          <li><a style="background-color:red;"  href="/new_user/" {% if req == '/new_user/' %} class = "homeactive" {% else %} class="home" {% endif %} >Admin</a></li>
+          <li><a href="/green/accounts/login/" {% if req == nil %} class = "homeactive" {% else %} class="home" {% endif %} >Home</a></li>
+          <li><a href="/green/about_us/" {% if req == '/green/about_us/' %} class = "homeactive" {% else %} class="home" {% endif %} >About Us</a></li>
+          <li><a href="/service/service/"  {% if req == '/service/service/' %} class = "homeactive" {% else %} class="home" {% endif %}>Services</a></li>
+          <li><a href="/green/solutions" {% if req == '/green/solutions/' %} class = "homeactive" {% else %} class="home" {% endif %}>Solutions</a></li>
+          <li><a href="/green/support" {% if req == '/green/support/' %} class = "homeactive" {% else %} class="home" {% endif %}>Support</a></li>
+          <li><a href="/green/contact_us" {% if req == '/green/contact_us/' %} class = "homeactive" {% else %} class="contact" {% endif %}>Contact Us</a></li>
+        </ul>
+        <br class="blank" />
+      </div>
+    </div>
+    <br class="blank" />
+  </div>
+  <div class="main_area">
+    <div class="header_text_wrap">
+      <p><h1>Flexsin Property Management..</h1><br />
+        <span class="you_text">FOR YOU</span><br />
+        <span class="header_body_text">Lorem ipsum dolor sit amet, consectetueradipiscing elit. Donec molestie. Sed aliquamsem ut arcu. Phasellus sollicitudin. Vestibulum condimentum facilisis nulla. In hac habitasse platea dictumst.Nulla nonummy. Cras quis libero. Cras venenatis. Aliquam posuere lobortis pede. Nullam fringilla urna id leo.</span></p>
+      <p style="padding:20px 0 0 0;"><a href="#" class="read_botn">Click Here</a></p>
+    </div>
+    <br class="blank" />
+  </div>
+</div>
+{% endblock %}

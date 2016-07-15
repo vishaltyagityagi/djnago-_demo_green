@@ -1,0 +1,54 @@
+{%  block main %}
+<style type="text/css">
+  label.error {
+    color:red;
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $( "#validation_user" ).validate({
+            rules: {
+                "username": {
+                    required: true,
+                },
+                "password": {
+                    required: true,
+                }
+
+            },
+            messages: {
+                "username": {
+                    required: "Please enter username.",
+                },
+                "password": {
+                    required: "Please enter password.",
+                }
+            }
+        });
+    });
+</script>
+{% block content %}
+<div style="margin-left:450px;">
+    {% if form.errors %}
+        <p style ="color:red;"><b>Your User Name and Password didn't match or does'nt exist. Please try again.</b></p>
+    {% endif %}
+    <form action="/homelogin/" method="post"><input type="hidden" value="Y0CYlHqJ1lQAkfJ0RvrBC6jB04pNMCkV" name="csrfmiddlewaretoken">
+      {% csrf_token %}
+            <table border="0">
+                <tbody><tr><th><label for="id_username">User Name:</label></th><td><input type="text" name="username" maxlength="254" id="id_username"></td></tr>
+                <tr><th><label for="id_password">Password:</label></th><td><input type="password" name="password" id="id_password"></td></tr>
+            </tbody></table>
+            <input type="submit" value="Login">
+            <input type="hidden" value="/homelogin" name="next">
+        </form>
+    <p class="read_botn" ><a  href="/green/register">Register</a></p>
+    <p class="collus_text">Welcome  &nbsp;&nbsp;<span style="background: #32CD32 none repeat scroll 0 0;border-radius: 3px; float: left; margin-top:6px;font-size: 14px;text-decoration:none; line-height: 30px; padding: 0 20px; text-shadow: 0 1px 1px #ac1414;"><a href="/green/logout/">Log Out</a></span></p>
+      <p class="collus_text"></p>
+  </div>
+
+{% endblock %}
+
+
+
+{% endblock %}

@@ -1,0 +1,241 @@
+{% block main %}
+<style type="text/css">
+  label.error {
+    color: red;
+  }
+</style>
+
+<div class="main_area">
+  <div class="growth_wrap">
+    <p class="growth_text">Let's Create your Company's Growth Strategy Together!
+      <br />
+      <span class="develop_text">We develop personal strategy for your business growing</span></p>
+  </div>
+  <div class="body_wrap">
+    <div class="left_body_wrap">
+      <div class="left_body_main">
+        <div class="main_wrap">
+          <form method="post" id="validation" action=".">{% csrf_token %}
+            <table border="0">
+              <tbody>
+                <tr>
+                  <th>
+                    <label for="id_email">Email:</label>
+                  </th>
+                  <td  style="width:80px">
+                    <input type="email" name="email" maxlength="100" id="id_email">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_username">User Name:</label>
+                  </th>
+                  <td style="width:80px">
+                    <input type="text" name="username" maxlength="100" id="id_username">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_first_Name">First Name:</label>
+                  </th>
+                  <td style="width:80px">
+                    <input type="text" name="first_Name" maxlength="100" id="id_first_Name">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_last_Name">Last Name:</label>
+                  </th>
+                  <td style="width:80px">
+                    <input type="text" name="last_Name" maxlength="100" id="id_last_Name">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_address">Address:</label>
+                  </th>
+                  <td  style="width:80px">
+                    <input type="text" name="address" maxlength="100" id="id_address">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_pincode">Pincode:</label>
+                  </th>
+                  <td  style="width:80px">
+                    <input type="text" name="pincode" maxlength="6" id="id_pincode">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_phone">Phone:</label>
+                  </th>
+                  <td  style="width:80px">
+                    <input type="text" name="phone" maxlength="12" id="id_phone">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_state">State:</label>
+                  </th>
+                  <td  style="width:80px">
+                    <select name="state" id="id_state">
+                      <option value="LAB">labor</option>
+                      <option value="CAR">cars</option>
+                      <option value="TRU">trucks</option>
+                      <option value="WRI">writing</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_city_Name">City Name:</label>
+                  </th>
+                  <td  style="width:80px">
+                    <select name="city_Name" id="id_city_Name">
+                      <option value="BRO">Bronx</option>
+                      <option value="BRK">Brooklyn</option>
+                      <option value="QNS">Queens</option>
+                      <option value="MAN">Manhattan</option>
+                      <option value="STN">Staten Island</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_password">Password:</label>
+                  </th>
+                  <td  style="width:80px">
+                    <input type="password" name="password" maxlength="100" id="id_password">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_Confirm_Password">Confirm Password:</label>
+                  </th>
+                  <td  style="width:80px">
+                    <input type="password" name="Confirm_Password" maxlength="100" id="id_Confirm_Password">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="id_Is_Active">Is Active:</label>
+                  </th>
+                  <td style="width:80px">
+                    <input type="checkbox" name="Is_Active" id="id_Is_Active">
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width:80px">
+                  </td>
+                  <td>
+                  </td>
+
+                  <td style="width:80px">
+                    <input type="submit" class="read_botn "  value="Register">
+                  </td>
+                  <td style="width:80px">
+                    <a class="read_botn" href="/green/accounts/login/">Login</a>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </form>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#validation").validate({
+      rules: {
+        "email": {
+          required: true,
+          email: true,
+          emailz:{required:true}
+        },
+        "username": {
+          required: true,
+        },
+        "first_Name": {
+          required: true,
+        },
+        "last_Name": {
+          required: true,
+        },
+        "address": {
+          required: true,
+        },
+        "pincode": {
+          required: true,
+          number: true,
+          minlength: 6
+        },
+        "phone": {
+          required: true,
+          number: true,
+          minlength: 12
+        },
+        "state": {
+          required: true,
+        },
+        "city_Name": {
+          required: true,
+        },
+        "password": {
+          required: true,
+        },
+        "Confirm_Password": {
+          required: true,
+          equalTo: '#id_password'
+        }
+      },
+      messages: {
+        "email": {
+          required: "Please enter Email.",
+        },
+        "username": {
+          required: "Please enter User Name.",
+        },
+        "first_Name": {
+          required: "Please upload  First Name",
+        },
+        "last_Name": {
+          required: "Please enter Last Name.",
+        },
+        "address": {
+          required: "Please enter Address.",
+        },
+        "pincode": {
+          required: "Please enter Pincode.",
+        },
+        "phone": {
+          required: "Please enter Phone Number.",
+        },
+        "state": {
+          required: "Please enter State.",
+        },
+        "city_Name": {
+          required: "Please enter City Name.",
+        },
+        "password": {
+          required: "Please enter Password.",
+
+        },
+        "Confirm_Password": {
+          required: "Please Re-enter Password.",
+            equalTo: 'confirm should be equal'
+        }
+      }
+    });
+    $.validator.addMethod("emailz", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/i.test(value);
+    }, "Please enter a valid Email. ie... mrbrown@xyz.com");
+  });
+</script>
+{% endblock %}

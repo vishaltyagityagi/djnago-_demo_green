@@ -1,0 +1,17 @@
+b a {
+    color: blue;
+}
+
+#blue {
+	color: #FCA205;
+    font-family: 'Lobster';
+}
+
+body {
+    padding-left: 15px;
+}
+.page-header {
+    background-color: #ff9400;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="background-color:   #e6f2ff;">
+{% load static from staticfiles %}
+    <head>
+        <title>Django Login Application |
+        {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="green_polls{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/niceforms-default.css" %}">
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/clockh.js" %}"></script>
+    <script src="{% static "js/clockp.js" %}"></script>
+    <script src="{% static "js/niceforms.js" %}"></script>
+    <script src="{% static "js/ddaccordion.js" %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js"></script>
+
+    </head>
+    <body>
+        {% block head %}
+
+
+        {% endblock %}
+        {% block content %}{% endblock %}
+
+
+
+    </body>
+</html>

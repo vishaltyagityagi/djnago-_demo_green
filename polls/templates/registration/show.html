@@ -1,0 +1,185 @@
+
+
+
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<style type="text/css">
+  label.error {
+    color:red;
+  }
+  .vk {
+    background: rgba(0, 0, 0, 0) url("../../static/images/menu_bg.gif") repeat-x scroll center center;
+    color: #313131 !importaint;
+  }
+</style>
+
+<div id="main_container">
+
+    <div class="header">
+    <div class="logo"><a href="#"><img src="images/logo.gif" alt="" title="" border="0" /></a></div>
+
+    <div class="right_header mar">Welcome Form</a> <a href="/logout" class="">Logout</a></div>
+    <div id="clock_a"></div>
+    </div>
+
+    <div class="main_content">
+                    <div class="menu">
+                    <ul>
+                    <li><a class="" href="/usermanagement">User Management</a></li>
+                    <li class="vk"><a href="/home">Product Management</a>
+                    </li>
+                    <li><a href="">Manage Services</a>
+                        <ul>
+                            <ul>
+                                <ul>
+                                </ul>
+
+                            </ul>
+                        </ul>
+
+                    </li>
+                    <li><a href="">Manage Orders</a>
+                        <ul>
+                            <ul>
+                            <ul>
+                            </ul>
+                            </ul>
+                        </ul>
+                    </li>
+                    <li><a href="">Settings</a>
+                        <ul>
+                            <ul>
+                                <ul>
+                                </ul>
+                            </ul>
+                        </li>
+                        </ul>
+                    </li>
+                    <li><a href="">Templates</a></li>
+                    <li><a href="">Custom details</a></li>
+                    </ul>
+                    </div>
+
+
+    <div class="center_content">
+    {% block left_panel %}
+    {% include "left.html" %}
+    {% endblock%}
+
+
+    <div class="right_content">
+
+</table>
+     <!-- <a href="/new_product" class="bt_green showform"><span class="bt_green_lft"></span><strong>Add new item</strong><span class="bt_green_r"></span></a> -->
+     <a href="#" class="bt_blue"></a>
+     <h2>Product Details</h2>
+     <!-- <a href="/home" class="bt_red deleteButton"><span class="bt_red_lft"></span><strong>Show all Products</strong><span class="bt_red_r"></span></a> -->
+         <div class="form formcheck" >
+           <table>
+           <tr><td><h2>Id:</h2></td><td>{{post.id}}</td></tr>
+           <tr><td><h2>Name:</h2></td><td>{{post.title}}</td></tr>
+           <tr><td><h2>Description:</h2></td><td>{{post.body}}</td></tr>
+           <tr><td><h2>Created date:</h2></td><td>{{post.post_date}}</td></tr>
+           <tr><td><h2>Image:</h2></td><td class="im">
+             <a href="{{STATIC_URL}}media/{{post.image}}" Download target="_blank">
+               <img border="0" src="{{STATIC_URL}}media/{{post.image}}" alt="Download" width="60" height="60">
+             </a>
+           </td>
+           </tr>
+
+           </table>
+          <h1> <a href="/{{post.id}}/edit/">Edit</a></h1>
+
+
+    </div>
+    <br>
+         </div>
+     </div>
+  </div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.showformm').click(function(){
+        if($(this).hasClass("check"))
+            {
+             $(this).removeClass("check");
+             $('.formcheck').hide();
+            }else{
+                $('.formcheck').show();
+             $(this).addClass("check");
+
+            }
+
+    });
+      $('.deleteButton').click(function(){
+              $('.checkdelete').each(function(){
+                   if($(this).is(':checked')){
+                     console.log("check");
+                   }
+
+              });
+
+           });
+      $('.allcheck').click(function(){
+        if($('.allcheck').is(':checked')){
+         $('.checkdelete').attr('checked',true );
+      }
+      else
+       $('.checkdelete').attr('checked',false );
+      });
+
+      $('.checkdelete').change(function(){
+    if($('.checkdelete:checked').length == $('.checkdelete').length){
+          $('.allcheck').attr('checked',true);
+    }else{
+      $('.allcheck').attr('checked',false);
+    }
+});
+
+    });
+</script>
+
+
+<script>
+    $(document).ready(function(){
+        $( "#validation" ).validate({
+            rules: {
+                "title": {
+                    required: true,
+                },
+                "body": {
+                    required: true,
+                },
+                 "image":{
+                    required: true,
+                    accept: "image/jpg,image/jpeg,image/png,image/gif"
+                }
+            },
+            messages: {
+                "title": {
+                    required: "Please enter Product title.",
+                },
+                "body": {
+                    required: "Please enter Description.",
+                },
+                "image":{
+                     required: "Please upload  Image",
+                     accept:"Upload Image with valid extension"
+                }
+            }
+        });
+    });
+</script>
+
+
+
+{% endblock %}
